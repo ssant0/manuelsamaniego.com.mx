@@ -15,7 +15,7 @@ npm run preview  # Preview production build locally
 ```
 src/
   layouts/       # Layout.astro — html shell, fonts, animate.css, GA4, footer
-  pages/         # index.astro, projects/[project].astro, 404.astro, aviso-de-privacidad.astro
+  pages/         # index.astro, projects/[project].astro, 404.astro, aviso-de-privacidad.astro, links.astro
   views/
     home/
       sections/  # Intro, RecentProjects, Technologies (full-page sections)
@@ -66,6 +66,14 @@ Google Analytics 4 (`G-G40F72XVS0`) is injected as the first element in `<head>`
 ## Legal
 
 `/aviso-de-privacidad` — LFPDPPP-compliant privacy notice (persona física, Los Mochis Sinaloa). Update `lastUpdated` + sections II, III, V, VII whenever GA config or third-party services change.
+
+## Pages
+
+- `/` — Home (Intro, RecentProjects, Technologies, Contact)
+- `/projects/[slug]` — Project detail (auto-generated from `allProjects.ts`)
+- `/links` — Linktree-style page: avatar, badge, stacked link cards (Portfolio, LinkedIn, GitHub, Instagram, Email). No NavBar, uses Layout.astro. Link cards: primary teal for portfolio, glass `bg-white/80 backdrop-blur` for social links.
+- `/aviso-de-privacidad` — LFPDPPP privacy notice
+- `/404` — Not found
 
 ## Gotchas
 
