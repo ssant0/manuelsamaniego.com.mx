@@ -14,7 +14,7 @@ npm run preview  # Preview production build locally
 
 ```
 src/
-  layouts/       # Layout.astro — html shell, fonts, animate.css, GA4, footer
+  layouts/       # Layout.astro — html shell, fonts, GA4, footer
   pages/         # index.astro, projects/[project].astro, 404.astro, aviso-de-privacidad.astro, links.astro
   views/
     home/
@@ -22,11 +22,10 @@ src/
       components/ # ProjectCard
     shared/      # NavBar, Contact, Footer
   data/          # allProjects.ts, technologies.ts, socialLinks.ts
-  scripts/       # animate-on-view.ts (Intersection Observer)
   styles/        # global.css
   types/         # Project.ts
 public/
-  css/           # fonts.css, animate_config.css
+  css/           # fonts.css
 ```
 
 ## Design System
@@ -34,15 +33,18 @@ public/
 - Brand teal: `#2d5d54` — hover: `#3e8b7d`
 - Background: `linear-gradient(170deg, #daeee9 0%, #f1f2f5 14%) fixed`
 - Fonts: `.codec-pro` (headings) / `.rubik` (body)
-- Animations: Animate.css 4.1.1 + `animate-on-view` class + `data-aov-animation` attribute
+- Animations: GSAP 3. Two patterns:
+  - **Above-fold / on-load** (`Intro`, `NavBar`): `gsap.from(el, { scale:0, opacity:0, duration:0.4, ease:"back.out", delay })`. Delays increment by 0.2s.
+  - **Scroll-triggered headings** (`RecentProjects`, `Technologies`, `Contact`): same base vars + `scrollTrigger: { trigger: "#section-id", start: "top 80%" }`. Eyebrow at delay 0, h2 at 0.15s, body copy at 0.3s.
+  - **Scroll-triggered card grids** (`RecentProjects`, `Technologies`, `Contact`): `gsap.set(".card", { scale:0, opacity:0 })` + `ScrollTrigger.batch(".card", { start:"top 95%", onEnter: batch => gsap.to(batch, { scale:1, opacity:1, stagger:0.07 }) })`. **Never use `gsap.from` + stagger + a single ScrollTrigger for grids** — if the trigger misfires, all elements stay permanently invisible.
 
 ### Reusable UI patterns
 
 ```html
 <!-- Eyebrow label (above every section h2) -->
 <p class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-2
-          animate__animated animate__fast animate-on-view"
-   data-aov-animation="animate__fadeInUp">— LABEL</p>
+            "
+  >— LABEL</p>
 
 <!-- Tech pill -->
 <span class="bg-[#2d5d54]/8 text-[#2d5d54] text-xs px-2 py-0.5 rounded-full font-medium">
@@ -78,8 +80,7 @@ Google Analytics 4 (`G-G40F72XVS0`) is injected as the first element in `<head>`
 ## Gotchas
 
 - **Astro `Image` + `inferSize`** injects inline `width`/`height`, overriding CSS height. Fix: `relative` on wrapper + `absolute inset-0 w-full h-full object-cover` on the image.
-- **Hero animation delays**: kept at 1s / 2s / 3s — don't increase, CTAs must appear fast.
+- **Hero animation delays**: last CTA fires at 1s total (`delay: 1`) — don't push further, CTAs must appear fast.
 - **`prefers-reduced-motion`** is handled in `Layout.astro` `<style>` block (not global.css).
-- **`animate-on-view`** only triggers once per element (no re-trigger on scroll up).
 - Scroll restoration is disabled on page load (`history.scrollRestoration = 'manual'`).
 - **Footer nav smooth scroll** — links use `data-scroll="<section-id>"` + a script in `Footer.astro`. "Inicio" scrolls to `top: 0`; others use `offsetTop`. The `href` fallback handles cross-page navigation (e.g. from `/aviso-de-privacidad`).

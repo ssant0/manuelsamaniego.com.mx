@@ -3,103 +3,123 @@
 ---
 
 <nav
-  class="sticky top-0 left-0 right-0 w-full z-50 flex justify-center py-8 px-16 max-lg:gap-0 max-md:mx-0 max-[660px]:px-0 max-[660px]:py-0"
+	id="navbar"
+	class=" w-full z-50 flex justify-center py-8 px-16 max-lg:gap-0 max-md:mx-0 max-[660px]:px-0 max-[660px]:py-0"
 >
-  <div
-    id="links-container"
-    class="bg-white/80 backdrop-blur-md border border-gray-200/60
+	<div
+		id="links-container"
+		class="bg-white/80 backdrop-blur-md border border-gray-200/60
     py-3 px-5
     rounded-2xl shadow-md flex items-center justify-center text-xl gap-8 max-[660px]:text-lg max-[660px]:gap-3 max-[382px]:text-base transition-all duration-300
     max-[660px]:w-full max-[660px]:justify-center max-[660px]:rounded-none max-[480px]:text-base"
-  >
-    <button
-      class="animate__animated animate__zoomIn animate__fast lb active cursor-pointer px-4 py-1 rounded-xl hover:text-[#2d5d54] transition-colors duration-300 border-2 border-solid border-transparent max-[382px]:px-2 max-[382px]:py-0.5
+	>
+		<button
+			class="lb active cursor-pointer px-4 py-1 rounded-xl hover:text-[#2d5d54] transition-colors duration-300 border-2 border-solid border-transparent max-[382px]:px-2 max-[382px]:py-0.5
       w-34
       max-[660px]:w-32
       max-[480px]:w-28"
-      >Inicio</button
-    >
-    <button
-      class="animate__animated animate__zoomIn animate__delay-1s animate__fast lb cursor-pointer px-4 py-1 rounded-xl hover:text-[#2d5d54] transition-colors duration-300 border-2 border-solid border-transparent max-[382px]:px-2 max-[382px]:py-0.5
+		>Inicio
+		</button
+		>
+		<button
+			class="lb cursor-pointer px-4 py-1 rounded-xl hover:text-[#2d5d54] transition-colors duration-300 border-2 border-solid border-transparent max-[382px]:px-2 max-[382px]:py-0.5
       w-34
       max-[660px]:w-32
       max-[480px]:w-28"
-      >Proyectos</button
-    >
-    <button
-      class="animate__animated animate__zoomIn animate__delay-2s animate__fast lb cursor-pointer px-4 py-1 rounded-xl hover:text-[#2d5d54] transition-colors duration-300 border-2 border-solid border-transparent max-[382px]:px-2 max-[382px]:py-0.5 text-center
+		>Proyectos
+		</button
+		>
+		<button
+			class="lb cursor-pointer px-4 py-1 rounded-xl hover:text-[#2d5d54] transition-colors duration-300 border-2 border-solid border-transparent max-[382px]:px-2 max-[382px]:py-0.5 text-center
       w-34
       max-[660px]:w-32
       max-[480px]:w-28"
-      >Contacto</button
-    >
-  </div>
+		>Contacto
+		</button
+		>
+	</div>
 </nav>
 
 <script>
-  const links: NodeListOf<HTMLButtonElement> = document.querySelectorAll(".lb");
 
-  const recentProjects = document.getElementById("recent-projects");
-  const contact = document.getElementById("contact");
-  const intro = document.getElementById("intro");
+	import gsap from "gsap";
 
-  const observerOptions = {
-    root: null,
-    rootMargin: "0px",
-    threshold: 0.6, // Ajusta este valor según cuándo quieras que se active
-  };
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        console.log(entry);
+	const links: NodeListOf<HTMLButtonElement> = document.querySelectorAll(".lb");
 
-        links.forEach((l) => l.classList.remove("active"));
-        if (entry.target === intro) {
-          links[0].classList.add("active");
-        } else if (entry.target === recentProjects) {
-          links[1].classList.add("active");
-        } else if (entry.target === contact) {
-          links[2].classList.add("active");
-        }
-      }
-    });
-  }, observerOptions);
+	links.forEach((link, i) => {
+		gsap.set(link, {scale: 0, opacity: 0})
+	})
 
-  const startObserver = () => {
-    if (intro) observer.observe(intro);
-    if (recentProjects) observer.observe(recentProjects);
-    if (contact) observer.observe(contact);
-  };
+	gsap.from("#navbar", {
+		scale: 0, opacity: 0, ease: "back.out", duration: 0.400, onComplete: () => {
+			links.forEach((link, i) => {
+				gsap.to(link, {scale: 1, ease: "back.out", duration: 0.500, opacity: 1, delay: i * 0.200})
+			})
+		}
+	});
 
-  startObserver();
 
-  const myScroll = (button: HTMLButtonElement, target: HTMLElement) => {
-    button.addEventListener("click", () => {
-      links.forEach((l) => l.classList.remove("active"));
-      button.classList.add("active");
-      observer.disconnect();
+	const recentProjects = document.getElementById("recent-projects");
+	const contact = document.getElementById("contact");
+	const intro = document.getElementById("intro");
 
-      window.scrollTo({
-        top: target.offsetTop,
-        behavior: "smooth",
-      });
+	const observerOptions = {
+		root: null,
+		rootMargin: "0px",
+		threshold: 0.6, // Ajusta este valor según cuándo quieras que se active
+	};
 
-      setTimeout(() => {
-        startObserver();
-      }, 200);
-    });
-  };
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach((entry) => {
+			if (entry.isIntersecting) {
 
-  myScroll(links[0], document.body);
-  myScroll(links[1], recentProjects!);
-  myScroll(links[2], contact!);
+				links.forEach((l) => l.classList.remove("active"));
+				if (entry.target === intro) {
+					links[0].classList.add("active");
+				} else if (entry.target === recentProjects) {
+					links[1].classList.add("active");
+				} else if (entry.target === contact) {
+					links[2].classList.add("active");
+				}
+			}
+		});
+	}, observerOptions);
+
+	const startObserver = () => {
+		if (intro) observer.observe(intro);
+		if (recentProjects) observer.observe(recentProjects);
+		if (contact) observer.observe(contact);
+	};
+
+	startObserver();
+
+	const myScroll = (button: HTMLButtonElement, target: HTMLElement) => {
+		button.addEventListener("click", () => {
+			links.forEach((l) => l.classList.remove("active"));
+			button.classList.add("active");
+			observer.disconnect();
+
+			window.scrollTo({
+				top: target.offsetTop,
+				behavior: "smooth",
+			});
+
+			setTimeout(() => {
+				startObserver();
+			}, 200);
+		});
+	};
+
+	myScroll(links[0], document.body);
+	myScroll(links[1], recentProjects!);
+	myScroll(links[2], contact!);
 </script>
 
 <style>
-  .lb.active {
-    border-color: #2d5d54;
-    color: #2d5d54;
-    background-color: rgba(45, 93, 84, 0.08);
-  }
+	.lb.active {
+		border-color: #2d5d54;
+		color: #2d5d54;
+		background-color: rgba(45, 93, 84, 0.08);
+	}
 </style>

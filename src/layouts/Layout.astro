@@ -3,77 +3,61 @@ import "../styles/global.css";
 import Footer from "../views/shared/Footer.astro";
 
 interface Props {
-  title: string;
-  metaTitle: string;
-  description: string;
-  keywords: string;
+	title: string;
+	metaTitle: string;
+	description: string;
+	keywords: string;
 }
 
 const {
-  title,
-  metaTitle,
-  description,
-  keywords
+	title,
+	metaTitle,
+	description,
+	keywords
 } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="es">
-  <head>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G40F72XVS0"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-G40F72XVS0');
-    </script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-    <meta name="title" content={metaTitle} />
-    <meta name="description" content={description} />
-    <meta name="keywords" content={keywords} />
-    <link rel="stylesheet" href="/css/fonts.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link rel="stylesheet" href="/css/animate_config.css" />
-    <link rel="canonical" href="https://www.manuelsamaniego.com.mx/">
-  </head>
-  <body class="rubik">
-    <slot />
-    <Footer />
-  </body>
+<head>
+	<!-- Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-G40F72XVS0"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+
+		gtag('js', new Date());
+		gtag('config', 'G-G40F72XVS0');
+	</script>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width"/>
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+	<meta name="generator" content={Astro.generator}/>
+	<title>{title}</title>
+	<meta name="title" content={metaTitle}/>
+	<meta name="description" content={description}/>
+	<meta name="keywords" content={keywords}/>
+	<link rel="stylesheet" href="/css/fonts.css"/>
+	<link rel="canonical" href="https://www.manuelsamaniego.com.mx/">
+</head>
+<body class="rubik">
+<slot/>
+<Footer/>
+</body>
 </html>
 
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-    }
+	* {
+		margin: 0;
+		padding: 0;
+	}
 
-    html,
-    body {
-        background-color: #f1f2f5;
-        background: linear-gradient(170deg, #daeee9 0%, #f1f2f5 14%) fixed;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .animate__animated {
-        animation-duration: 0.01ms !important;
-        animation-delay: 0.01ms !important;
-      }
-    }
+	html,
+	body {
+		background-color: #f1f2f5;
+		background: linear-gradient(170deg, #daeee9 0%, #f1f2f5 14%) fixed;
+	}
 </style>
-
-<script>
-  import { startAnimateOnView } from '../scripts/animate-on-view';
-  startAnimateOnView();
-
-  // Prevent browser from restoring scroll position on page load/reload
-  if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
-  }
-  window.scrollTo(0, 0);
-</script>

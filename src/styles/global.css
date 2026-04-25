@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 .media-links a {
-  border-color: #2d5d54;
-  fill: #2d5d54;
+	border-color: #2d5d54;
+	fill: #2d5d54;
 }
 
 .media-links a:hover {
-  border-color: #3e8b7d;
+	border-color: #3e8b7d;
 }
 
 .media-links a:hover svg {
-  fill: #3e8b7d;
+	fill: #3e8b7d;
 }

@@ -1,155 +1,163 @@
 ---
-import { Image } from "astro:assets";
-import type { ImageMetadata } from "astro";
+import {Image} from "astro:assets";
+import type {ImageMetadata} from "astro";
 
 interface Props {
-  title: string;
-  longDescription: string;
-  image: ImageMetadata;
-  liveLink: string;
-  repoLink?: string;
-  technologies: string[];
+	title: string;
+	longDescription: string;
+	image: ImageMetadata;
+	liveLink: string;
+	repoLink?: string;
+	technologies: string[];
 }
 
-const { title, longDescription, image, liveLink, repoLink, technologies } =
-  Astro.props;
+const {title, longDescription, image, liveLink, repoLink, technologies} =
+	Astro.props;
 ---
 
 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-28">
 
-  <!-- Back link -->
-  <a
-    href="/"
-    class="back-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-400 hover:text-[#2d5d54] transition-colors duration-300 mb-12 animate__animated animate__fadeIn animate__fast"
-  >
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-      <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 1 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"/>
-    </svg>
-    Volver al inicio
-  </a>
+	<!-- Back link -->
+	<a
+		href="/"
+		class="back-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-400 hover:text-[#2d5d54] transition-colors duration-300 mb-12   "
+	>
+		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+			<path fill-rule="evenodd"
+			      d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 1 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"/>
+		</svg>
+		Volver al inicio
+	</a>
 
-  <!-- Header -->
-  <header class="mb-10">
-    <p
-      class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-3 animate__animated animate__fadeInUp animate__fast"
-    >— PROYECTO</p>
+	<!-- Header -->
+	<header class="mb-10">
+		<p
+			class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-3   "
+		>— PROYECTO</p>
 
-    <h1
-      class="codec-pro text-5xl font-medium leading-tight mb-5
+		<h1
+			class="codec-pro text-5xl font-medium leading-tight mb-5
       max-[640px]:text-4xl max-[440px]:text-3xl
-      animate__animated animate__fadeInUp animate__fast"
-    >{title}</h1>
+        "
+		>{title}</h1>
 
-    <div class="flex flex-wrap gap-2 animate__animated animate__fadeInUp animate__fast">
-      {technologies.map((tech) => (
-        <span class="bg-[#2d5d54]/8 text-[#2d5d54] text-xs px-2.5 py-1 rounded-full font-medium">
+		<div class="flex flex-wrap gap-2   ">
+			{technologies.map((tech) => (
+				<span class="bg-[#2d5d54]/8 text-[#2d5d54] text-xs px-2.5 py-1 rounded-full font-medium">
           {tech}
         </span>
-      ))}
-    </div>
-  </header>
+			))}
+		</div>
+	</header>
 
-  <!-- Hero image -->
-  <div class="project-img-wrapper relative overflow-hidden rounded-2xl shadow-lg mb-10 animate__animated animate__fadeIn animate__delay-1s animate__fast">
-    <a href={liveLink} target="_blank" rel="noopener noreferrer" aria-label={`Visitar ${title}`}>
-      <Image
-        src={image}
-        alt={`Imagen del proyecto ${title}`}
-        class="project-img w-full h-auto block"
-      />
-      <div class="img-overlay absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300">
-        <span class="bg-white/90 text-[#2d5d54] text-sm font-semibold px-4 py-2 rounded-xl flex items-center gap-2 shadow-md">
+	<!-- Hero image -->
+	<div class="project-img-wrapper relative overflow-hidden rounded-2xl shadow-lg mb-10    ">
+		<a href={liveLink} target="_blank" rel="noopener noreferrer" aria-label={`Visitar ${title}`}>
+			<Image
+				src={image}
+				alt={`Imagen del proyecto ${title}`}
+				class="project-img w-full h-auto block"
+			/>
+			<div
+				class="img-overlay absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300">
+        <span
+	        class="bg-white/90 text-[#2d5d54] text-sm font-semibold px-4 py-2 rounded-xl flex items-center gap-2 shadow-md">
           Visitar proyecto
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
-            <path d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
+            <path
+	            d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
+            <path
+	            d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
           </svg>
         </span>
-      </div>
-    </a>
-  </div>
+			</div>
+		</a>
+	</div>
 
-  <!-- CTAs -->
-  <div class="flex flex-wrap gap-3 mb-14 animate__animated animate__fadeInUp animate__delay-1s animate__fast max-[400px]:flex-col">
-    <a
-      href={liveLink}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="cta-primary rounded-xl bg-[#2d5d54] hover:bg-[#2c7c6e] transition-all text-white px-7 py-3 flex gap-2 items-center w-fit"
-    >
-      <span class="text-base">Visitar proyecto</span>
-      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
-        <path d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
-        <path d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
-      </svg>
-    </a>
+	<!-- CTAs -->
+	<div class="flex flex-wrap gap-3 mb-14     max-[400px]:flex-col">
+		<a
+			href={liveLink}
+			target="_blank"
+			rel="noopener noreferrer"
+			class="cta-primary rounded-xl bg-[#2d5d54] hover:bg-[#2c7c6e] transition-all text-white px-7 py-3 flex gap-2 items-center w-fit"
+		>
+			<span class="text-base">Visitar proyecto</span>
+			<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
+				<path
+					d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
+				<path
+					d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
+			</svg>
+		</a>
 
-    {repoLink && (
-      <a
-        href={repoLink}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="cta-secondary rounded-xl border-2 border-[#2d5d54] text-[#2d5d54] hover:bg-[#2d5d54] hover:text-white transition-all px-7 py-3 flex gap-2 items-center w-fit"
-      >
-        <span class="text-base">Ver repositorio</span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
-        </svg>
-      </a>
-    )}
-  </div>
+		{repoLink && (
+			<a
+				href={repoLink}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="cta-secondary rounded-xl border-2 border-[#2d5d54] text-[#2d5d54] hover:bg-[#2d5d54] hover:text-white transition-all px-7 py-3 flex gap-2 items-center w-fit"
+			>
+				<span class="text-base">Ver repositorio</span>
+				<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
+					<path
+						d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+				</svg>
+			</a>
+		)}
+	</div>
 
-  <!-- Description -->
-  <section class="animate__animated animate__fadeInUp animate__delay-1s animate__fast">
-    <p class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-3">— DESCRIPCIÓN</p>
-    <h2 class="codec-pro text-3xl font-medium mb-5 max-[640px]:text-2xl">Sobre el proyecto</h2>
-    <p class="text-lg text-gray-600 leading-relaxed max-[640px]:text-base">
-      {longDescription}
-    </p>
-  </section>
+	<!-- Description -->
+	<section class="   ">
+		<p class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-3">— DESCRIPCIÓN</p>
+		<h2 class="codec-pro text-3xl font-medium mb-5 max-[640px]:text-2xl">Sobre el proyecto</h2>
+		<p class="text-lg text-gray-600 leading-relaxed max-[640px]:text-base">
+			{longDescription}
+		</p>
+	</section>
 
 </div>
 
 <style>
-  .back-link {
-    display: inline-flex;
-  }
+	.back-link {
+		display: inline-flex;
+	}
 
-  .project-img {
-    transition: transform 0.5s ease, filter 0.5s ease;
-    filter: grayscale(15%) contrast(97%);
-  }
+	.project-img {
+		transition: transform 0.5s ease, filter 0.5s ease;
+		filter: grayscale(15%) contrast(97%);
+	}
 
-  .project-img-wrapper:hover .project-img {
-    transform: scale(1.02);
-    filter: grayscale(0%) contrast(100%);
-  }
+	.project-img-wrapper:hover .project-img {
+		transform: scale(1.02);
+		filter: grayscale(0%) contrast(100%);
+	}
 
-  .project-img-wrapper:hover .img-overlay {
-    opacity: 1;
-  }
+	.project-img-wrapper:hover .img-overlay {
+		opacity: 1;
+	}
 
-  .img-overlay {
-    background: rgba(45, 93, 84, 0.15);
-  }
+	.img-overlay {
+		background: rgba(45, 93, 84, 0.15);
+	}
 
-  .cta-primary:hover {
-    transform: scale(1.04);
-  }
+	.cta-primary:hover {
+		transform: scale(1.04);
+	}
 
-  .cta-secondary:hover {
-    transform: scale(1.04);
-  }
+	.cta-secondary:hover {
+		transform: scale(1.04);
+	}
 </style>
 
 <style is:global>
-  body {
-    min-height: 100svh;
-    display: flex;
-    flex-direction: column;
-  }
+	body {
+		min-height: 100svh;
+		display: flex;
+		flex-direction: column;
+	}
 
-  body > :first-child {
-    flex: 1;
-  }
+	body > :first-child {
+		flex: 1;
+	}
 </style>

@@ -1,37 +1,69 @@
 ---
 import ProjectCard from "../components/ProjectCard.astro";
-import { allProjects } from "../../../data/allProjects";
+import {allProjects} from "../../../data/allProjects";
 ---
 
 <div
-  id="recent-projects"
-  class="flex flex-col items-center justify-center mt-72 max-[660px]:mt-30"
+	id="recent-projects"
+	class="flex flex-col items-center justify-center mt-72 max-[660px]:mt-30"
 >
-  <p class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-2 animate__animated animate__fast animate-on-view" data-aov-animation="animate__fadeInUp">— PORTAFOLIO</p>
-  <h2
-    class="pt-1 text-6xl text-center rubik max-[800px]:text-5xl max-[660px]:text-4xl max-[382px]:text-3xl animate__animated animate__fast animate-on-view max-[460px]:px-4"
-    data-aov-animation="animate__zoomIn"
-  >
-    Proyectos
-  </h2>
+	<p id="recent-projects-eyebrow" class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-2">—
+		PORTAFOLIO</p>
+	<h2
+		id="recent-projects-title"
+		class="pt-1 text-6xl text-center rubik max-[800px]:text-5xl max-[660px]:text-4xl max-[382px]:text-3xl    max-[460px]:px-4"
 
-  <div class="pt-8 flex items-center justify-center w-full">
-    <div
-      class="w-[1180px] flex items-center justify-center flex-wrap gap-8
+	>
+		Proyectos
+	</h2>
+
+	<div class="pt-8 flex items-center justify-center w-full">
+		<div
+			id="project-cards"
+			class="w-[1180px] flex items-center justify-center flex-wrap gap-8
     max-[1225px]:w-[780px] max-[820px]:w-[580px] max-[820px]:justify-center max-[660px]:w-full"
-    >
-      {
-        allProjects.map((project) => (
-          <ProjectCard
-            title={project.title}
-            description={project.shortDescription}
-            image={project.image}
-            link={project.liveLink}
-            technologies={project.technologies}
-          />
-        ))
-      }
-    </div>
-  </div>
+		>
+			{
+				allProjects.map((project) => (
+					<ProjectCard
+						title={project.title}
+						description={project.shortDescription}
+						image={project.image}
+						link={project.liveLink}
+						technologies={project.technologies}
+					/>
+				))
+			}
+		</div>
+	</div>
 </div>
 
+<script>
+	import gsap from "gsap";
+	import {ScrollTrigger} from "gsap/ScrollTrigger";
+
+	gsap.registerPlugin(ScrollTrigger)
+
+	const headVars = {scale: 0, opacity: 0, y: 20, duration: 0.4, ease: "back.out"};
+	const headTrigger = {trigger: "#recent-projects", start: "top 80%"};
+
+	gsap.from("#recent-projects-eyebrow", {...headVars, scrollTrigger: headTrigger});
+	gsap.from("#recent-projects-title", {...headVars, delay: 0.15, scrollTrigger: headTrigger});
+
+	const projectCards = document.querySelector("#project-cards");
+
+	let childrens = projectCards?.children!;
+
+
+	for (let i = 0; i < childrens.length; i++) {
+		gsap.from(childrens[i], {
+			scrollTrigger: childrens[i],
+			top: 200,
+			opacity: 0,
+			duration: 0.5,
+			scale: 0,
+		})
+	}
+
+
+</script>

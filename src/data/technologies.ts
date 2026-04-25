@@ -8,45 +8,45 @@ import astro from "../assets/icons/astro.svg?raw";
 import js from "../assets/icons/js.svg?raw";
 
 const processIcon = (svg: string) => {
-  return svg
-    .replace(/<\?xml.*?\?>/, "")
-    .replace(/<!--[\s\S]*?-->/, "")
-    .replace("<svg", `<svg class="w-12 h-12"`)
-    .replace(/width="[^"]*"/, "")
-    .replace(/height="[^"]*"/, "");
+	return svg
+		.replace(/<\?xml.*?\?>/, "")
+		.replace(/<!--[\s\S]*?-->/, "")
+		.replace("<svg", `<svg class="w-12 h-12"`)
+		.replace(/width="[^"]*"/, "")
+		.replace(/height="[^"]*"/, "");
 };
 
 export const technologies = [
-  {
-    name: "Java",
-    icon: processIcon(java),
-  },
-  {
-    name: "Spring Boot",
-    icon: processIcon(spring),
-  },
-  {
-    name: "PostgreSQL",
-    icon: processIcon(postgresql),
-  },
-  {
-    name: "TypeScript",
-    icon: processIcon(typescript),
-  },
-  {
-    name: "HTML",
-    icon: processIcon(html),
-  },
-  {
-    name: "CSS",
-    icon: processIcon(css),
-  },
-  {
-    name: "Astro",
-    icon: processIcon(astro),
-  },
-  {
-    name: "JavaScript",
-    icon: processIcon(js),
-  },
+	{
+		name: "Java",
+		icon: processIcon(java),
+	},
+	{
+		name: "Spring Boot",
+		icon: processIcon(spring),
+	},
+	{
+		name: "PostgreSQL",
+		icon: processIcon(postgresql),
+	},
+	{
+		name: "TypeScript",
+		icon: processIcon(typescript),
+	},
+	{
+		name: "HTML",
+		icon: processIcon(html),
+	},
+	{
+		name: "CSS",
+		icon: processIcon(css),
+	},
+	{
+		name: "Astro",
+		icon: processIcon(astro),
+	},
+	{
+		name: "JavaScript",
+		icon: processIcon(js),
+	},
 ];
