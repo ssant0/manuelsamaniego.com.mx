@@ -14,8 +14,9 @@ const lastUpdated = "23 de marzo de 2026";
 
 		<!-- Back link -->
 		<a
+			id="aviso-back"
 			href="/"
-			class="inline-flex items-center gap-1.5 text-sm font-medium text-gray-400 hover:text-[#2d5d54] transition-colors duration-300 mb-12   "
+			class="inline-flex items-center gap-1.5 text-sm font-medium text-gray-400 hover:text-[#2d5d54] transition-colors duration-300 mb-12"
 		>
 			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
 				<path fill-rule="evenodd"
@@ -26,13 +27,13 @@ const lastUpdated = "23 de marzo de 2026";
 
 		<!-- Header -->
 		<header class="mb-14">
-			<p class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-3   ">
+			<p id="aviso-eyebrow" class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-3">
 				— LEGAL
 			</p>
-			<h1 class="codec-pro text-5xl font-medium leading-tight mb-4 max-[640px]:text-4xl max-[440px]:text-3xl   ">
+			<h1 id="aviso-title" class="codec-pro text-5xl font-medium leading-tight mb-4 max-[640px]:text-4xl max-[440px]:text-3xl">
 				Aviso de Privacidad
 			</h1>
-			<p class="text-sm text-gray-400   ">
+			<p id="aviso-date" class="text-sm text-gray-400">
 				Última actualización: {lastUpdated}
 			</p>
 		</header>
@@ -229,4 +230,26 @@ const lastUpdated = "23 de marzo de 2026";
 			flex: 1;
 		}
 	</style>
+
+	<script>
+		import gsap from "gsap";
+		import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+		gsap.registerPlugin(ScrollTrigger);
+
+		const base = { scale: 0, opacity: 0, duration: 0.4, ease: "back.out" };
+
+		gsap.from("#aviso-back",    base);
+		gsap.from("#aviso-eyebrow", { ...base, delay: 0.2 });
+		gsap.from("#aviso-title",   { ...base, y: 20, delay: 0.4 });
+		gsap.from("#aviso-date",    { ...base, delay: 0.6 });
+
+		document.querySelectorAll("section").forEach(section => {
+			const eyebrow = section.querySelector("p");
+			const title = section.querySelector("h2");
+			const trigger = { trigger: section, start: "top 80%" };
+			if (eyebrow) gsap.from(eyebrow, { ...base, scrollTrigger: trigger });
+			if (title)   gsap.from(title,   { ...base, y: 20, delay: 0.15, scrollTrigger: trigger });
+		});
+	</script>
 </Layout>

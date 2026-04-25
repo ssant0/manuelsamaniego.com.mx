@@ -20,7 +20,7 @@ const {title, longDescription, image, liveLink, repoLink, technologies} =
 	<!-- Back link -->
 	<a
 		href="/"
-		class="back-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-400 hover:text-[#2d5d54] transition-colors duration-300 mb-12   "
+		class="back-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-400 hover:text-[#2d5d54] transition-colors duration-300 mb-12"
 	>
 		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
 			<path fill-rule="evenodd"
@@ -32,16 +32,17 @@ const {title, longDescription, image, liveLink, repoLink, technologies} =
 	<!-- Header -->
 	<header class="mb-10">
 		<p
-			class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-3   "
+			id="project-eyebrow"
+			class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-3"
 		>— PROYECTO</p>
 
 		<h1
+			id="project-title"
 			class="codec-pro text-5xl font-medium leading-tight mb-5
-      max-[640px]:text-4xl max-[440px]:text-3xl
-        "
+      max-[640px]:text-4xl max-[440px]:text-3xl"
 		>{title}</h1>
 
-		<div class="flex flex-wrap gap-2   ">
+		<div id="project-techs" class="flex flex-wrap gap-2">
 			{technologies.map((tech) => (
 				<span class="bg-[#2d5d54]/8 text-[#2d5d54] text-xs px-2.5 py-1 rounded-full font-medium">
           {tech}
@@ -51,7 +52,7 @@ const {title, longDescription, image, liveLink, repoLink, technologies} =
 	</header>
 
 	<!-- Hero image -->
-	<div class="project-img-wrapper relative overflow-hidden rounded-2xl shadow-lg mb-10    ">
+	<div class="project-img-wrapper relative overflow-hidden rounded-2xl shadow-lg mb-10">
 		<a href={liveLink} target="_blank" rel="noopener noreferrer" aria-label={`Visitar ${title}`}>
 			<Image
 				src={image}
@@ -75,7 +76,7 @@ const {title, longDescription, image, liveLink, repoLink, technologies} =
 	</div>
 
 	<!-- CTAs -->
-	<div class="flex flex-wrap gap-3 mb-14     max-[400px]:flex-col">
+	<div id="project-ctas" class="flex flex-wrap gap-3 mb-14 max-[400px]:flex-col">
 		<a
 			href={liveLink}
 			target="_blank"
@@ -108,7 +109,7 @@ const {title, longDescription, image, liveLink, repoLink, technologies} =
 	</div>
 
 	<!-- Description -->
-	<section class="   ">
+	<section id="project-description">
 		<p class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-3">— DESCRIPCIÓN</p>
 		<h2 class="codec-pro text-3xl font-medium mb-5 max-[640px]:text-2xl">Sobre el proyecto</h2>
 		<p class="text-lg text-gray-600 leading-relaxed max-[640px]:text-base">
@@ -117,6 +118,32 @@ const {title, longDescription, image, liveLink, repoLink, technologies} =
 	</section>
 
 </div>
+
+<script>
+	import gsap from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+	gsap.registerPlugin(ScrollTrigger);
+
+	const base = { scale: 0, opacity: 0, duration: 0.4, ease: "back.out" };
+
+	gsap.from(".back-link",           base);
+	gsap.from("#project-eyebrow",     { ...base, delay: 0.2 });
+	gsap.from("#project-title",       { ...base, y: 20, delay: 0.4 });
+	gsap.from("#project-techs",       { ...base, delay: 0.6 });
+	gsap.from(".project-img-wrapper", { ...base, delay: 0.8 });
+	gsap.from("#project-ctas",        { ...base, y: 15, delay: 1.0 });
+
+	const desc = document.querySelector<HTMLElement>("#project-description");
+	if (desc) {
+		const trigger = { trigger: desc, start: "top 80%" };
+		const ps = desc.querySelectorAll("p");
+		const h2 = desc.querySelector("h2");
+		if (ps[0]) gsap.from(ps[0], { ...base, scrollTrigger: trigger });
+		if (h2)    gsap.from(h2,    { ...base, y: 20, delay: 0.15, scrollTrigger: trigger });
+		if (ps[1]) gsap.from(ps[1], { ...base, y: 15, delay: 0.3,  scrollTrigger: trigger });
+	}
+</script>
 
 <style>
 	.back-link {
