@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+	overflow-x: hidden;
+}
+
 .media-links a {
 	border-color: #2d5d54;
 	fill: #2d5d54;
