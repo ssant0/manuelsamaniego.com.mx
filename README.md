@@ -156,4 +156,4 @@ I'm **Manuel Samaniego**, a Web Developer passionate about automation. I've buil
 
 - **LinkedIn:** [Manuel Samaniego](https://www.linkedin.com/in/manuel-samaniego/)
 - **Instagram:** [@ssamanieg0\_](https://www.instagram.com/ssamanieg0_/)
-- **Email:** [manuel.s@labstudiomedia.com](mailto:manuel.s@labstudiomedia.com)
+- **Email:** [contacto@manuelsamaniego.com.mx](mailto:contacto@manuelsamaniego.com.mx)
