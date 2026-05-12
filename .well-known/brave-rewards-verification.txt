@@ -1,4 +1,4 @@
 This is a Brave Creators publisher verification file.
 
 Domain: manuelsamaniego.com.mx
-Token: 9b55f7218fca54c77e6144df0a2beea0ba910468f3d6fb2ee7d637ff3d52775f
+Token: 75b2c49f99f9b8b72782736c3aa956c18d1fd8f0eca2830cabe162846a224ed8
