@@ -39,25 +39,35 @@ import {technologies} from "../../../data/technologies";
 	</div>
 </div>
 
+<style>
+	#technologies-eyebrow,
+	#technologies-title {
+		visibility: hidden;
+	}
+</style>
+
 <script>
 	import gsap from "gsap";
 	import {ScrollTrigger} from "gsap/ScrollTrigger";
 
 	gsap.registerPlugin(ScrollTrigger);
 
-	const headVars = {scale: 0, opacity: 0, y: 20, duration: 0.4, ease: "back.out"};
 	const headTrigger = {trigger: "#technologies", start: "top 80%"};
+	const headTo = {autoAlpha: 1, scale: 1, y: 0, duration: 0.4, ease: "back.out"};
 
-	gsap.from("#technologies-eyebrow", {...headVars, scrollTrigger: headTrigger});
-	gsap.from("#technologies-title", {...headVars, delay: 0.15, scrollTrigger: headTrigger});
+	gsap.set("#technologies-eyebrow", {scale: 0, y: 20});
+	gsap.set("#technologies-title", {scale: 0, y: 20});
 
-	gsap.set(".tech-card", {scale: 0, opacity: 0});
+	gsap.to("#technologies-eyebrow", {...headTo, scrollTrigger: headTrigger});
+	gsap.to("#technologies-title", {...headTo, delay: 0.15, scrollTrigger: headTrigger});
+
+	gsap.set(".tech-card", {scale: 0, autoAlpha: 0});
 
 	ScrollTrigger.batch(".tech-card", {
 		start: "top 95%",
 		onEnter: batch => gsap.to(batch, {
+			autoAlpha: 1,
 			scale: 1,
-			opacity: 1,
 			duration: 0.4,
 			ease: "back.out",
 			stagger: 0.07,

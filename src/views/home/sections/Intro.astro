@@ -130,6 +130,15 @@ import {socialLinks} from "../../../data/socialLinks";
 </div>
 
 <style>
+	.avatar-ring,
+	#intro-badge,
+	#intro h1,
+	#intro p,
+	.media-links,
+	#intro-ctas {
+		visibility: hidden;
+	}
+
 	.media-links a:hover svg {
 		fill: white;
 	}
@@ -150,14 +159,21 @@ import {socialLinks} from "../../../data/socialLinks";
 <script>
 	import gsap from "gsap";
 
-	const baseVars = {scale: 0, opacity: 0, duration: 0.4, ease: "back.out"};
+	const baseTo = {autoAlpha: 1, scale: 1, duration: 0.4, ease: "back.out"};
 
-	gsap.from(".avatar-ring", baseVars)
-	gsap.from("#intro-badge", {...baseVars, delay: 0.2})
-	gsap.from("#intro h1", {...baseVars, y: 20, delay: 0.4})
-	gsap.from("#intro p", {...baseVars, y: 15, delay: 0.6})
-	gsap.from(".media-links", {...baseVars, delay: 0.8})
-	gsap.from("#intro-ctas", {...baseVars, y: 15, delay: 1});
+	gsap.set(".avatar-ring", {scale: 0});
+	gsap.set("#intro-badge", {scale: 0});
+	gsap.set("#intro h1", {scale: 0, y: 20});
+	gsap.set("#intro p", {scale: 0, y: 15});
+	gsap.set(".media-links", {scale: 0});
+	gsap.set("#intro-ctas", {scale: 0, y: 15});
+
+	gsap.to(".avatar-ring", baseTo);
+	gsap.to("#intro-badge", {...baseTo, delay: 0.2});
+	gsap.to("#intro h1", {...baseTo, y: 0, delay: 0.4});
+	gsap.to("#intro p", {...baseTo, y: 0, delay: 0.6});
+	gsap.to(".media-links", {...baseTo, delay: 0.8});
+	gsap.to("#intro-ctas", {...baseTo, y: 0, delay: 1});
 
 	document.getElementById('btn-ver-proyectos')?.addEventListener('click', () => {
 		const target = document.getElementById('recent-projects');

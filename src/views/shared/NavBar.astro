@@ -47,15 +47,16 @@
 
 	const links: NodeListOf<HTMLButtonElement> = document.querySelectorAll(".lb");
 
-	links.forEach((link, i) => {
-		gsap.set(link, {scale: 0, opacity: 0})
-	})
+	links.forEach((link) => {
+		gsap.set(link, {scale: 0});
+	});
 
-	gsap.from("#navbar", {
-		scale: 0, opacity: 0, ease: "back.out", duration: 0.400, onComplete: () => {
+	gsap.set("#navbar", {scale: 0});
+	gsap.to("#navbar", {
+		autoAlpha: 1, scale: 1, ease: "back.out", duration: 0.400, onComplete: () => {
 			links.forEach((link, i) => {
-				gsap.to(link, {scale: 1, ease: "back.out", duration: 0.500, opacity: 1, delay: i * 0.200})
-			})
+				gsap.to(link, {autoAlpha: 1, scale: 1, ease: "back.out", duration: 0.500, delay: i * 0.200});
+			});
 		}
 	});
 
@@ -117,6 +118,11 @@
 </script>
 
 <style>
+	#navbar,
+	.lb {
+		visibility: hidden;
+	}
+
 	.lb.active {
 		border-color: #2d5d54;
 		color: #2d5d54;

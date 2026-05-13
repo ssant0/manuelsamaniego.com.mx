@@ -38,32 +38,38 @@ import {allProjects} from "../../../data/allProjects";
 	</div>
 </div>
 
+<style>
+	#recent-projects-eyebrow,
+	#recent-projects-title {
+		visibility: hidden;
+	}
+</style>
+
 <script>
 	import gsap from "gsap";
 	import {ScrollTrigger} from "gsap/ScrollTrigger";
 
-	gsap.registerPlugin(ScrollTrigger)
+	gsap.registerPlugin(ScrollTrigger);
 
-	const headVars = {scale: 0, opacity: 0, y: 20, duration: 0.4, ease: "back.out"};
 	const headTrigger = {trigger: "#recent-projects", start: "top 80%"};
+	const headTo = {autoAlpha: 1, scale: 1, y: 0, duration: 0.4, ease: "back.out"};
 
-	gsap.from("#recent-projects-eyebrow", {...headVars, scrollTrigger: headTrigger});
-	gsap.from("#recent-projects-title", {...headVars, delay: 0.15, scrollTrigger: headTrigger});
+	gsap.set("#recent-projects-eyebrow", {scale: 0, y: 20});
+	gsap.set("#recent-projects-title", {scale: 0, y: 20});
 
-	const projectCards = document.querySelector("#project-cards");
+	gsap.to("#recent-projects-eyebrow", {...headTo, scrollTrigger: headTrigger});
+	gsap.to("#recent-projects-title", {...headTo, delay: 0.15, scrollTrigger: headTrigger});
 
-	let childrens = projectCards?.children!;
+	gsap.set(".card-project", {scale: 0, autoAlpha: 0});
 
-
-	for (let i = 0; i < childrens.length; i++) {
-		gsap.from(childrens[i], {
-			scrollTrigger: childrens[i],
-			top: 200,
-			opacity: 0,
+	ScrollTrigger.batch(".card-project", {
+		start: "top 95%",
+		onEnter: batch => gsap.to(batch, {
+			autoAlpha: 1,
+			scale: 1,
 			duration: 0.5,
-			scale: 0,
-		})
-	}
-
-
+			ease: "back.out",
+			stagger: 0.1,
+		}),
+	});
 </script>

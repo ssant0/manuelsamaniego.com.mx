@@ -113,6 +113,12 @@
 </div>
 
 <style>
+	#contact-eyebrow,
+	#contact-title,
+	#contact-body {
+		visibility: hidden;
+	}
+
 	.contact-card {
 		display: flex;
 		align-items: center;
@@ -195,20 +201,24 @@
 
 	gsap.registerPlugin(ScrollTrigger);
 
-	const headVars = {scale: 0, opacity: 0, y: 20, duration: 0.4, ease: "back.out"};
 	const headTrigger = {trigger: "#contact", start: "top 80%"};
+	const headTo = {autoAlpha: 1, scale: 1, y: 0, duration: 0.4, ease: "back.out"};
 
-	gsap.from("#contact-eyebrow", {...headVars, scrollTrigger: headTrigger});
-	gsap.from("#contact-title", {...headVars, delay: 0.15, scrollTrigger: headTrigger});
-	gsap.from("#contact-body", {...headVars, delay: 0.3, scrollTrigger: headTrigger});
+	gsap.set("#contact-eyebrow", {scale: 0, y: 20});
+	gsap.set("#contact-title", {scale: 0, y: 20});
+	gsap.set("#contact-body", {scale: 0, y: 20});
 
-	gsap.set(".contact-card", {scale: 0, opacity: 0});
+	gsap.to("#contact-eyebrow", {...headTo, scrollTrigger: headTrigger});
+	gsap.to("#contact-title", {...headTo, delay: 0.15, scrollTrigger: headTrigger});
+	gsap.to("#contact-body", {...headTo, delay: 0.3, scrollTrigger: headTrigger});
+
+	gsap.set(".contact-card", {scale: 0, autoAlpha: 0});
 
 	ScrollTrigger.batch(".contact-card", {
 		start: "top 95%",
 		onEnter: batch => gsap.to(batch, {
+			autoAlpha: 1,
 			scale: 1,
-			opacity: 1,
 			duration: 0.4,
 			ease: "back.out",
 			stagger: 0.1,

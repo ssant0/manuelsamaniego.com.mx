@@ -198,6 +198,16 @@ import {socialLinks} from "../data/socialLinks";
 </Layout>
 
 <style>
+	.avatar-ring,
+	#links-badge,
+	#links-name,
+	#links-bio,
+	#links-divider,
+	.link-card,
+	#links-footer {
+		visibility: hidden;
+	}
+
 	.avatar-ring {
 		box-shadow: 0 0 0 6px rgba(45, 93, 84, 0.12), 0 4px 20px rgba(45, 93, 84, 0.2);
 	}
@@ -210,22 +220,30 @@ import {socialLinks} from "../data/socialLinks";
 <script>
 	import gsap from "gsap";
 
-	const base = { scale: 0, opacity: 0, duration: 0.4, ease: "back.out" };
+	const baseTo = {autoAlpha: 1, scale: 1, duration: 0.4, ease: "back.out"};
 
-	gsap.from(".avatar-ring",  base);
-	gsap.from("#links-badge",  { ...base, delay: 0.2 });
-	gsap.from("#links-name",   { ...base, y: 20, delay: 0.4 });
-	gsap.from("#links-bio",    { ...base, y: 15, delay: 0.6 });
-	gsap.from("#links-divider", { ...base, delay: 0.7 });
+	gsap.set(".avatar-ring", {scale: 0});
+	gsap.set("#links-badge", {scale: 0});
+	gsap.set("#links-name", {scale: 0, y: 20});
+	gsap.set("#links-bio", {scale: 0, y: 15});
+	gsap.set("#links-divider", {scale: 0});
+	gsap.set("#links-footer", {scale: 0});
+
+	gsap.to(".avatar-ring", baseTo);
+	gsap.to("#links-badge", {...baseTo, delay: 0.2});
+	gsap.to("#links-name", {...baseTo, y: 0, delay: 0.4});
+	gsap.to("#links-bio", {...baseTo, y: 0, delay: 0.6});
+	gsap.to("#links-divider", {...baseTo, delay: 0.7});
 
 	document.querySelectorAll<HTMLElement>(".link-card").forEach((card, i) => {
 		card.classList.remove("transition-all", "duration-300");
-		gsap.from(card, {
-			...base, y: 15, delay: 0.8 + i * 0.08,
+		gsap.set(card, {scale: 0, y: 15});
+		gsap.to(card, {
+			...baseTo, y: 0, delay: 0.8 + i * 0.08,
 			clearProps: "transform,opacity",
 			onComplete: () => card.classList.add("transition-all", "duration-300"),
 		});
 	});
 
-	gsap.from("#links-footer", { ...base, delay: 1.4 });
+	gsap.to("#links-footer", {...baseTo, delay: 1.4});
 </script>

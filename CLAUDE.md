@@ -33,10 +33,10 @@ public/
 - Brand teal: `#2d5d54` — hover: `#3e8b7d`
 - Background: `linear-gradient(170deg, #daeee9 0%, #f1f2f5 14%) fixed`
 - Fonts: `.codec-pro` (headings) / `.rubik` (body)
-- Animations: GSAP 3. Two patterns:
-  - **Above-fold / on-load** (`Intro`, `NavBar`): `gsap.from(el, { scale:0, opacity:0, duration:0.4, ease:"back.out", delay })`. Delays increment by 0.2s.
-  - **Scroll-triggered headings** (`RecentProjects`, `Technologies`, `Contact`): same base vars + `scrollTrigger: { trigger: "#section-id", start: "top 80%" }`. Eyebrow at delay 0, h2 at 0.15s, body copy at 0.3s.
-  - **Scroll-triggered card grids** (`RecentProjects`, `Technologies`, `Contact`): `gsap.set(".card", { scale:0, opacity:0 })` + `ScrollTrigger.batch(".card", { start:"top 95%", onEnter: batch => gsap.to(batch, { scale:1, opacity:1, stagger:0.07 }) })`. **Never use `gsap.from` + stagger + a single ScrollTrigger for grids** — if the trigger misfires, all elements stay permanently invisible.
+- Animations: GSAP 3. FOUC prevention pattern: add `visibility: hidden` in `<style>` for every animated element, then use `gsap.set()` for initial scale/y + `gsap.to()` with `autoAlpha: 1` (never `gsap.from()` with `opacity`). `autoAlpha` manages both `opacity` and `visibility` together.
+  - **Above-fold / on-load** (`Intro`, `NavBar`, `links`): CSS `visibility:hidden` on elements → `gsap.set(el, { scale:0 })` → `gsap.to(el, { autoAlpha:1, scale:1, duration:0.4, ease:"back.out", delay })`. Delays increment by 0.2s.
+  - **Scroll-triggered headings** (`RecentProjects`, `Technologies`, `Contact`): CSS `visibility:hidden` on heading elements → `gsap.set()` initial state → `gsap.to()` with `autoAlpha:1` + `scrollTrigger: { trigger: "#section-id", start: "top 80%" }`. Eyebrow at delay 0, h2 at 0.15s, body copy at 0.3s.
+  - **Scroll-triggered card grids** (`RecentProjects`, `Technologies`, `Contact`): `gsap.set(".card", { scale:0, autoAlpha:0 })` + `ScrollTrigger.batch(".card", { start:"top 95%", onEnter: batch => gsap.to(batch, { autoAlpha:1, scale:1, stagger:0.07 }) })`. **Never use `gsap.from` + stagger + a single ScrollTrigger for grids** — if the trigger misfires, all elements stay permanently invisible.
 
 ### Reusable UI patterns
 
