@@ -1,4 +1,5 @@
 import klyn from "../assets/img/klyn.png";
+import klynErp from "../assets/img/erp-klyn.png";
 import labstudiomedia from "../assets/img/labstudiomedia.png";
 import cocinasmodulares from "../assets/img/cocinasmodulares.png";
 import cybercafe10m from "../assets/img/cybercafe10m.png";
@@ -117,6 +118,34 @@ export const allProjects: Project[] = [
 			"Full-stack",
 		],
 		repoLink: "https://github.com/ssant0/klyn-web",
+	},
+	{
+		title: "erp.klyn.com.mx",
+		longDescription:
+			"Despliegue e implementación de ERP Odoo 19 Community para Klyn en servidor VPS Ubuntu. Instalé mediante paquete .deb oficial, configuré PostgreSQL y ajusté los módulos de Ventas, Inventario, Facturación y Contactos a los procesos del negocio. Integré correo corporativo con configuración SMTP/IMAP y plantillas de mail personalizadas para comunicaciones profesionales. Servidor con actualizaciones de seguridad automáticas y HTTPS mediante Certbot auto-renovable.",
+		shortDescription:
+			"ERP Odoo 19 Community en VPS Ubuntu con módulos de Ventas, Inventario, Facturación y Contactos, integración SMTP/IMAP y SSL automático.",
+		image: klynErp,
+		liveLink: "https://erp.klyn.com.mx/",
+		technologies: ["Odoo 19", "PostgreSQL", "Ubuntu", "Let's Encrypt", "SSH"],
+		keywords: [
+			"Odoo",
+			"ERP",
+			"PostgreSQL",
+			"VPS",
+			"Ubuntu",
+			"Let's Encrypt",
+			"SSH",
+			"Server Administration",
+			"Linux",
+			"SMTP",
+			"IMAP",
+			"DevOps",
+			"Ventas",
+			"Inventario",
+			"Facturación",
+			"Full-stack",
+		],
 	},
 	{
 		title: "cucii.online",
