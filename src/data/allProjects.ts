@@ -1,4 +1,4 @@
-import cucii from "../assets/img/cucii.png";
+import klyn from "../assets/img/klyn.png";
 import labstudiomedia from "../assets/img/labstudiomedia.png";
 import cocinasmodulares from "../assets/img/cocinasmodulares.png";
 import cybercafe10m from "../assets/img/cybercafe10m.png";
@@ -90,27 +90,33 @@ export const allProjects: Project[] = [
 		],
 	},
 	{
-		title: "cucii.mx",
+		title: "klyn.com.mx",
 		longDescription:
-			"Desarrollo front-end completo para universidad privada CUCII. Migré de vanilla JavaScript a arquitectura Astro + Bootstrap 5 para mejor mantenibilidad, adapté plantilla existente según requerimientos del cliente e implementé cambios iterativos basados en feedback. Optimicé rendimiento y accesibilidad para estudiantes y personal académico.",
+			"Sitio web completo para Klyn, empresa proveedora de suministros de limpieza, oficina y papelería. Diseñé y desarrollé el sitio de principio a fin en colaboración directa con los dueños, configuré servidor VPS Ubuntu con actualizaciones de seguridad automáticas y HTTPS mediante Certbot auto-renovable, y desplegué en Cloudflare para máximo rendimiento global. Integré analítica avanzada con Google Analytics 4, Facebook Pixel y Google Tag Manager para seguimiento preciso de conversiones y campañas.",
 		shortDescription:
-			"Sitio universitario desarrollado con Astro + Bootstrap 5, adaptación de plantilla existente y optimización para experiencia de usuario.",
-		image: cucii,
-		liveLink: "https://cucii.mx/",
-		technologies: ["Astro", "Bootstrap 5", "CSS", "Google Fonts"],
+			"Sitio corporativo para proveedor de suministros de limpieza y oficina desarrollado con Astro + Bootstrap 5, infraestructura VPS Ubuntu con HTTPS automático, y analytics avanzado con GA4, Facebook Pixel y GTM.",
+		image: klyn,
+		liveLink: "https://klyn.com.mx/",
+		technologies: ["Astro", "Bootstrap 5", "CSS", "Google Analytics", "Facebook Pixel", "GTM", "Cloudflare"],
 		keywords: [
 			"Astro",
 			"Bootstrap 5",
 			"CSS",
-			"Google Fonts",
-			"Template Adaptation",
-			"Client Communication",
-			"Iterative Development",
-			"Education",
-			"University",
-			"Responsive Design",
-			"SEO",
+			"Google Analytics",
+			"Facebook Pixel",
+			"GTM",
+			"Cloudflare",
+			"VPS",
+			"Ubuntu",
+			"Certbot",
+			"SSL",
+			"Server Administration",
+			"Proveedor",
+			"Suministros",
+			"Performance",
+			"Full-stack",
 		],
+		repoLink: "https://github.com/ssant0/klyn-web",
 	},
 	{
 		title: "cucii.online",
