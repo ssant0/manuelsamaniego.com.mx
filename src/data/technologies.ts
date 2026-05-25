@@ -18,6 +18,7 @@ const processIcon = (svg: string) => {
 };
 
 export const technologies = [
+	// Backend
 	{
 		name: "Java",
 		icon: processIcon(java),
@@ -30,10 +31,20 @@ export const technologies = [
 		name: "PostgreSQL",
 		icon: processIcon(postgresql),
 	},
+	// Frontend
+	{
+		name: "Angular",
+		icon: processIcon(angular),
+	},
 	{
 		name: "TypeScript",
 		icon: processIcon(typescript),
 	},
+	{
+		name: "JavaScript",
+		icon: processIcon(js),
+	},
+	// Fundamentos
 	{
 		name: "HTML",
 		icon: processIcon(html),
@@ -42,16 +53,9 @@ export const technologies = [
 		name: "CSS",
 		icon: processIcon(css),
 	},
+	// Tooling
 	{
 		name: "Astro",
 		icon: processIcon(astro),
-	},
-	{
-		name: "JavaScript",
-		icon: processIcon(js),
-	},
-	{
-		name: "Angular",
-		icon: processIcon(angular),
 	},
 ];
