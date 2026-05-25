@@ -125,27 +125,47 @@ const {title, longDescription, image, liveLink, repoLink, technologies} =
 
 	gsap.registerPlugin(ScrollTrigger);
 
-	const base = { scale: 0, opacity: 0, duration: 0.4, ease: "back.out" };
+	// Initial states — visibility:hidden set in CSS, autoAlpha manages both
+	gsap.set("#project-eyebrow", { y: 10 });
+	gsap.set("#project-title",   { y: 18 });
+	gsap.set("#project-techs",   { y: 10 });
+	gsap.set("#project-ctas",    { y: 10 });
 
-	gsap.from(".back-link",           base);
-	gsap.from("#project-eyebrow",     { ...base, delay: 0.2 });
-	gsap.from("#project-title",       { ...base, y: 20, delay: 0.4 });
-	gsap.from("#project-techs",       { ...base, delay: 0.6 });
-	gsap.from(".project-img-wrapper", { ...base, delay: 0.8 });
-	gsap.from("#project-ctas",        { ...base, y: 15, delay: 1.0 });
+	const fadeUp = { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out" };
 
+	gsap.to("#project-eyebrow", { ...fadeUp, delay: 0.1  });
+	gsap.to("#project-title",   { ...fadeUp, delay: 0.25 });
+	gsap.to("#project-techs",   { ...fadeUp, delay: 0.4  });
+	gsap.to("#project-ctas",    { ...fadeUp, delay: 0.55 });
+
+	// Description — scroll-triggered, same pattern as home sections
 	const desc = document.querySelector<HTMLElement>("#project-description");
 	if (desc) {
 		const trigger = { trigger: desc, start: "top 80%" };
-		const ps = desc.querySelectorAll("p");
-		const h2 = desc.querySelector("h2");
-		if (ps[0]) gsap.from(ps[0], { ...base, scrollTrigger: trigger });
-		if (h2)    gsap.from(h2,    { ...base, y: 20, delay: 0.15, scrollTrigger: trigger });
-		if (ps[1]) gsap.from(ps[1], { ...base, y: 15, delay: 0.3,  scrollTrigger: trigger });
+		const ps  = desc.querySelectorAll("p");
+		const h2  = desc.querySelector("h2");
+
+		gsap.set(ps[0], { y: 10 });
+		gsap.set(h2,    { y: 15 });
+		gsap.set(ps[1], { y: 10 });
+
+		if (ps[0]) gsap.to(ps[0], { ...fadeUp,               scrollTrigger: trigger });
+		if (h2)    gsap.to(h2,    { ...fadeUp, delay: 0.15,  scrollTrigger: trigger });
+		if (ps[1]) gsap.to(ps[1], { ...fadeUp, delay: 0.3,   scrollTrigger: trigger });
 	}
 </script>
 
 <style>
+	/* FOUC prevention — autoAlpha manages visibility+opacity together */
+	#project-eyebrow,
+	#project-title,
+	#project-techs,
+	#project-ctas,
+	#project-description p,
+	#project-description h2 {
+		visibility: hidden;
+	}
+
 	.back-link {
 		display: inline-flex;
 	}
