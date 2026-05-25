@@ -20,9 +20,14 @@ import {socialLinks} from "../../../data/socialLinks";
 		<span class="text-white text-3xl font-semibold codec-pro tracking-tight max-[382px]:text-2xl">MS</span>
 	</div>
 
-	<!-- Badge -->
-	<div id="intro-badge" class="flex items-center gap-2 px-4 py-1.5 bg-[#2d5d54]/10 rounded-full mb-3">
-		<span class="text-[#2d5d54] text-sm font-medium tracking-wide">&lt;/&gt;&nbsp;&nbsp;Desarrollador Full Stack</span>
+	<!-- Badges -->
+	<div id="intro-badges" class="flex flex-wrap items-center justify-center gap-2 mb-3">
+		<div class="flex items-center gap-2 px-4 py-1.5 bg-[#2d5d54]/10 rounded-full">
+			<span class="text-[#2d5d54] text-sm font-medium tracking-wide">&lt;/&gt;&nbsp;&nbsp;Desarrollador Full Stack</span>
+		</div>
+		<div class="flex items-center gap-2 px-4 py-1.5 bg-[#2d5d54]/10 rounded-full">
+			<span class="text-[#2d5d54] text-sm font-medium tracking-wide">Disponible para nuevas oportunidades</span>
+		</div>
 	</div>
 
 	<h1
@@ -131,7 +136,7 @@ import {socialLinks} from "../../../data/socialLinks";
 
 <style>
 	.avatar-ring,
-	#intro-badge,
+	#intro-badges,
 	#intro h1,
 	#intro p,
 	.media-links,
@@ -162,14 +167,14 @@ import {socialLinks} from "../../../data/socialLinks";
 	const baseTo = {autoAlpha: 1, scale: 1, duration: 0.4, ease: "back.out"};
 
 	gsap.set(".avatar-ring", {scale: 0});
-	gsap.set("#intro-badge", {scale: 0});
+	gsap.set("#intro-badges", {scale: 0});
 	gsap.set("#intro h1", {scale: 0, y: 20});
 	gsap.set("#intro p", {scale: 0, y: 15});
 	gsap.set(".media-links", {scale: 0});
 	gsap.set("#intro-ctas", {scale: 0, y: 15});
 
 	gsap.to(".avatar-ring", baseTo);
-	gsap.to("#intro-badge", {...baseTo, delay: 0.2});
+	gsap.to("#intro-badges", {...baseTo, delay: 0.2});
 	gsap.to("#intro h1", {...baseTo, y: 0, delay: 0.4});
 	gsap.to("#intro p", {...baseTo, y: 0, delay: 0.6});
 	gsap.to(".media-links", {...baseTo, delay: 0.8});
