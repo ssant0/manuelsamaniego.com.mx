@@ -4,114 +4,116 @@
 
 <nav
 	id="navbar"
-	class=" w-full z-50 flex justify-center py-8 px-16 max-lg:gap-0 max-md:mx-0 max-[660px]:px-0 max-[660px]:py-0"
+	class="sticky top-0 w-full z-50 flex justify-center
+	py-3 px-16
+	max-[660px]:px-0 max-[660px]:py-0"
 >
 	<div
 		id="links-container"
 		class="bg-white/80 backdrop-blur-md border border-gray-200/60
     py-3 px-5
-    rounded-2xl shadow-md flex items-center justify-center text-xl gap-8 max-[660px]:text-lg max-[660px]:gap-3 max-[382px]:text-base transition-all duration-300
+    rounded-2xl shadow-md flex items-center justify-center text-xl gap-8
+    max-[660px]:text-lg max-[660px]:gap-3 max-[382px]:text-base
+    transition-all duration-300
     max-[660px]:w-full max-[660px]:justify-center max-[660px]:rounded-none max-[480px]:text-base"
 	>
 		<button
-			class="lb active cursor-pointer px-4 py-1 rounded-xl hover:text-[#2d5d54] transition-colors duration-300 border-2 border-solid border-transparent max-[382px]:px-2 max-[382px]:py-0.5
-      w-34
-      max-[660px]:w-32
-      max-[480px]:w-28"
-		>Inicio
-		</button
-		>
+			data-target="intro"
+			class="lb active cursor-pointer px-4 py-1 rounded-xl hover:text-[#2d5d54] transition-colors duration-300 border-2 border-solid border-transparent
+      max-[382px]:px-2 max-[382px]:py-0.5
+      w-34 max-[660px]:w-32 max-[480px]:w-28"
+		>Inicio</button>
+
 		<button
-			class="lb cursor-pointer px-4 py-1 rounded-xl hover:text-[#2d5d54] transition-colors duration-300 border-2 border-solid border-transparent max-[382px]:px-2 max-[382px]:py-0.5
-      w-34
-      max-[660px]:w-32
-      max-[480px]:w-28"
-		>Proyectos
-		</button
-		>
+			data-target="recent-projects"
+			class="lb cursor-pointer px-4 py-1 rounded-xl hover:text-[#2d5d54] transition-colors duration-300 border-2 border-solid border-transparent
+      max-[382px]:px-2 max-[382px]:py-0.5
+      w-34 max-[660px]:w-32 max-[480px]:w-28"
+		>Proyectos</button>
+
+		<!-- Oculto en mobile — sección accesible por scroll -->
 		<button
-			class="lb cursor-pointer px-4 py-1 rounded-xl hover:text-[#2d5d54] transition-colors duration-300 border-2 border-solid border-transparent max-[382px]:px-2 max-[382px]:py-0.5 text-center
-      w-34
-      max-[660px]:w-32
-      max-[480px]:w-28"
-		>Contacto
-		</button
-		>
+			data-target="about"
+			class="lb cursor-pointer px-4 py-1 rounded-xl hover:text-[#2d5d54] transition-colors duration-300 border-2 border-solid border-transparent
+      max-[382px]:px-2 max-[382px]:py-0.5
+      w-34 max-[660px]:hidden"
+		>Sobre mí</button>
+
+		<button
+			data-target="contact"
+			class="lb cursor-pointer px-4 py-1 rounded-xl hover:text-[#2d5d54] transition-colors duration-300 border-2 border-solid border-transparent
+      max-[382px]:px-2 max-[382px]:py-0.5
+      w-34 max-[660px]:w-32 max-[480px]:w-28 text-center"
+		>Contacto</button>
 	</div>
 </nav>
 
 <script>
-
 	import gsap from "gsap";
 
+	const links = document.querySelectorAll<HTMLButtonElement>(".lb");
 
-	const links: NodeListOf<HTMLButtonElement> = document.querySelectorAll(".lb");
-
-	links.forEach((link) => gsap.set(link, {scale: 0}));
-
+	// Animación de entrada
+	links.forEach((link) => gsap.set(link, { scale: 0 }));
 	gsap.to("#links-container", {
 		autoAlpha: 1, duration: 0.5, ease: "power2.out", onComplete: () => {
 			links.forEach((link, i) => {
-				gsap.to(link, {autoAlpha: 1, scale: 1, ease: "back.out", duration: 0.4, delay: i * 0.15});
+				gsap.to(link, { autoAlpha: 1, scale: 1, ease: "back.out", duration: 0.4, delay: i * 0.15 });
 			});
-		}
+		},
 	});
 
+	// Mapa sección → botón usando data-target
+	const getSection = (id: string): HTMLElement | null =>
+		document.getElementById(id);
 
-	const recentProjects = document.getElementById("recent-projects");
-	const contact = document.getElementById("contact");
-	const intro = document.getElementById("intro");
+	const sectionLinkMap = new Map<Element, HTMLButtonElement>();
 
-	const observerOptions = {
-		root: null,
-		rootMargin: "0px",
-		threshold: 0.6, // Ajusta este valor según cuándo quieras que se active
-	};
+	links.forEach((link) => {
+		const targetId = link.dataset.target!;
+		const section = getSection(targetId);
+		if (section) sectionLinkMap.set(section, link);
+	});
+
+	// Observer — marca el link activo según la sección visible
+	const observerOptions = { root: null, rootMargin: "0px", threshold: 0.5 };
 
 	const observer = new IntersectionObserver((entries) => {
 		entries.forEach((entry) => {
-			if (entry.isIntersecting) {
-
-				links.forEach((l) => l.classList.remove("active"));
-				if (entry.target === intro) {
-					links[0].classList.add("active");
-				} else if (entry.target === recentProjects) {
-					links[1].classList.add("active");
-				} else if (entry.target === contact) {
-					links[2].classList.add("active");
-				}
-			}
+			if (!entry.isIntersecting) return;
+			const mappedLink = sectionLinkMap.get(entry.target);
+			// Si el link está oculto en mobile (display:none), no cambia el estado activo
+			if (!mappedLink || mappedLink.offsetParent === null) return;
+			links.forEach((l) => l.classList.remove("active"));
+			mappedLink.classList.add("active");
 		});
 	}, observerOptions);
 
 	const startObserver = () => {
-		if (intro) observer.observe(intro);
-		if (recentProjects) observer.observe(recentProjects);
-		if (contact) observer.observe(contact);
+		sectionLinkMap.forEach((_, section) => observer.observe(section));
 	};
-
 	startObserver();
 
-	const myScroll = (button: HTMLButtonElement, target: HTMLElement) => {
-		button.addEventListener("click", () => {
+	// Scroll suave al hacer click — descuenta la altura del nav sticky
+	links.forEach((link) => {
+		link.addEventListener("click", () => {
+			const targetId = link.dataset.target!;
+			const section = getSection(targetId);
+			if (!section) return;
+
 			links.forEach((l) => l.classList.remove("active"));
-			button.classList.add("active");
+			link.classList.add("active");
 			observer.disconnect();
 
+			const navHeight = document.getElementById("navbar")?.offsetHeight ?? 0;
 			window.scrollTo({
-				top: target.offsetTop,
+				top: section.offsetTop - navHeight,
 				behavior: "smooth",
 			});
 
-			setTimeout(() => {
-				startObserver();
-			}, 200);
+			setTimeout(startObserver, 800);
 		});
-	};
-
-	myScroll(links[0], document.body);
-	myScroll(links[1], recentProjects!);
-	myScroll(links[2], contact!);
+	});
 </script>
 
 <style>
