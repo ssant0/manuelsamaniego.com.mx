@@ -6,6 +6,7 @@ import html from "../assets/icons/html.svg?raw";
 import css from "../assets/icons/css.svg?raw";
 import astro from "../assets/icons/astro.svg?raw";
 import js from "../assets/icons/js.svg?raw";
+import angular from "../assets/icons/angular.svg?raw";
 
 const processIcon = (svg: string) => {
 	return svg
@@ -48,5 +49,9 @@ export const technologies = [
 	{
 		name: "JavaScript",
 		icon: processIcon(js),
+	},
+	{
+		name: "Angular",
+		icon: processIcon(angular),
 	},
 ];

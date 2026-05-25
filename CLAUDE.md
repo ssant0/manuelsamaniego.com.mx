@@ -60,6 +60,8 @@ public/
 - URL slug is auto-generated from `title` (spaces/dots → hyphens, lowercase)
 
 **New technology** — add entry to `src/data/technologies.ts` with `name` and inline SVG `icon`.
+- SVG icons often carry whitespace around the artwork. Fix by computing the real bounding box from the polygon/path coordinates and setting `viewBox="minX minY width height"` to crop tightly.
+- To colorize a monochrome SVG: add a `<linearGradient>` inside `<defs>` and apply `fill="url(#id)"` to the root `<g>`. Use brand colors — `processIcon` preserves internal SVG content untouched.
 
 ## Analytics
 
