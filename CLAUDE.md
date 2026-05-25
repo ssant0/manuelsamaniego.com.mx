@@ -60,6 +60,7 @@ public/
 - URL slug is auto-generated from `title` (spaces/dots → hyphens, lowercase)
 
 **New technology** — add entry to `src/data/technologies.ts` with `name` and inline SVG `icon`.
+- Maintain order: **Backend** (Java, Spring Boot, PostgreSQL) → **Frontend** (Angular, TypeScript, JavaScript) → **Fundamentos** (HTML, CSS) → **Tooling** (Astro). Add new techs inside the correct group.
 - SVG icons often carry whitespace around the artwork. Fix by computing the real bounding box from the polygon/path coordinates and setting `viewBox="minX minY width height"` to crop tightly.
 - To colorize a monochrome SVG: add a `<linearGradient>` inside `<defs>` and apply `fill="url(#id)"` to the root `<g>`. Use brand colors — `processIcon` preserves internal SVG content untouched.
 
@@ -81,7 +82,8 @@ Google Analytics 4 (`G-G40F72XVS0`) is injected as the first element in `<head>`
 
 ## Gotchas
 
-- **Astro `Image` + `inferSize`** injects inline `width`/`height`, overriding CSS height. Fix: `relative` on wrapper + `absolute inset-0 w-full h-full object-cover` on the image.
+- **Astro `Image` sizing**: always pass an explicit `width` prop — without it Astro generates the WebP at full source resolution. Card images use `width={800}` (covers 2× retina at 620 px tablet); project detail uses `width={900}` (matches `max-w-4xl`). Source images live at 1600 px wide. Avoid `inferSize` for layout-controlled images: it injects inline `width`/`height` that fights CSS height. Fix when needed: `relative` on wrapper + `absolute inset-0 w-full h-full object-cover` on the image.
+- **Hero badges**: both pills (role + open-to-work) live inside `#intro-badges` wrapper — GSAP and `visibility:hidden` target the wrapper, not individual pills. Responsive sizing: `text-sm px-4` default → `text-xs tracking-normal px-3` at ≤440 px → `px-2.5` at ≤382 px.
 - **Hero animation delays**: last CTA fires at 1s total (`delay: 1`) — don't push further, CTAs must appear fast.
 - **`prefers-reduced-motion`** is handled in `Layout.astro` `<style>` block (not global.css).
 - Scroll restoration is disabled on page load (`history.scrollRestoration = 'manual'`).
