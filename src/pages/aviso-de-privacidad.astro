@@ -52,7 +52,7 @@ const lastUpdated = "23 de marzo de 2026";
 					<li><span class="font-medium text-gray-700">Nombre:</span> Manuel Antonio Samaniego Serrano</li>
 					<li><span class="font-medium text-gray-700">Domicilio:</span> Los Mochis, Sinaloa, México</li>
 					<li><span class="font-medium text-gray-700">Sitio web:</span> manuelsamaniego.com.mx</li>
-					<li><span class="font-medium text-gray-700">Correo de contacto:</span> {socialLinks.email}</li>
+					<li><span class="font-medium text-gray-700">Correo de contacto:</span> <span data-email-text></span></li>
 				</ul>
 				<p>En cumplimiento de la <em>Ley Federal de Protección de Datos Personales en Posesión de los Particulares</em>
 					(LFPDPPP), su Reglamento y los Lineamientos del Aviso de Privacidad, te informamos sobre el tratamiento que se
@@ -102,8 +102,8 @@ const lastUpdated = "23 de marzo de 2026";
 				</ul>
 				<p class="mt-4 text-sm text-gray-500">
 					Si no deseas que tus datos sean tratados para las finalidades secundarias, puedes manifestarlo escribiendo a
-					<a href={`mailto:${socialLinks.email}`}
-					   class="text-[#2d5d54] hover:text-[#3e8b7d] underline decoration-dotted underline-offset-2">{socialLinks.email}</a>
+					<a href="" data-email-href data-email-text
+					   class="text-[#2d5d54] hover:text-[#3e8b7d] underline decoration-dotted underline-offset-2"></a>
 					o instalando la extensión <a href="https://tools.google.com/dlpage/gaoptout" target="_blank"
 					                             rel="noopener noreferrer"
 					                             class="text-[#2d5d54] hover:text-[#3e8b7d] underline decoration-dotted underline-offset-2">Google
@@ -123,8 +123,8 @@ const lastUpdated = "23 de marzo de 2026";
 						cdnjs.cloudflare.com). Ten en cuenta que esto puede afectar la apariencia visual del sitio.
 					</li>
 					<li>Usando extensiones de privacidad como uBlock Origin o similares.</li>
-					<li>Enviando una solicitud de limitación al correo <a href={`mailto:${socialLinks.email}`}
-					                                                      class="text-[#2d5d54] hover:text-[#3e8b7d] underline decoration-dotted underline-offset-2">{socialLinks.email}</a>.
+					<li>Enviando una solicitud de limitación al correo <a href="" data-email-href data-email-text
+					                                                      class="text-[#2d5d54] hover:text-[#3e8b7d] underline decoration-dotted underline-offset-2"></a>.
 					</li>
 				</ul>
 			</section>
@@ -175,8 +175,8 @@ const lastUpdated = "23 de marzo de 2026";
 				<p class="mb-3">Tienes derecho a <span class="font-medium text-gray-700">Acceder, Rectificar, Cancelar u Oponerte</span>
 					(derechos ARCO) al tratamiento de tus datos personales, conforme a los artículos 28–37 de la LFPDPPP.</p>
 				<p class="mb-3">Para ejercer tus derechos ARCO, envía un correo a:</p>
-				<p class="mb-5"><a href={`mailto:${socialLinks.email}`}
-				                   class="text-[#2d5d54] hover:text-[#3e8b7d] underline decoration-dotted underline-offset-2 font-medium">{socialLinks.email}</a>
+				<p class="mb-5"><a href="" data-email-href data-email-text
+				                   class="text-[#2d5d54] hover:text-[#3e8b7d] underline decoration-dotted underline-offset-2 font-medium"></a>
 				</p>
 				<p class="mb-3">Tu solicitud debe incluir:</p>
 				<ul class="list-disc pl-6 flex flex-col gap-2 mb-3">
@@ -235,6 +235,8 @@ const lastUpdated = "23 de marzo de 2026";
 	<script>
 		import gsap from "gsap";
 		import { ScrollTrigger } from "gsap/ScrollTrigger";
+		import { hydrateEmail } from "../utils/email";
+		hydrateEmail();
 
 		gsap.registerPlugin(ScrollTrigger);
 

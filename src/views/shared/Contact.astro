@@ -88,7 +88,8 @@ import { socialLinks } from "../../data/socialLinks";
 		</a>
 
 		<a
-			href={`mailto:${socialLinks.email}`}
+			href=""
+			data-email-href
 			target="_blank"
 			class="contact-card    "
 
@@ -101,7 +102,7 @@ import { socialLinks } from "../../data/socialLinks";
 			</div>
 			<div>
 				<p class="contact-label">Email</p>
-				<p class="contact-handle contact-email">{socialLinks.email}</p>
+				<p class="contact-handle contact-email" data-email-text></p>
 			</div>
 		</a>
 	</div>
@@ -200,6 +201,8 @@ import { socialLinks } from "../../data/socialLinks";
 <script>
 	import gsap from "gsap";
 	import {ScrollTrigger} from "gsap/ScrollTrigger";
+	import { hydrateEmail } from "../../utils/email";
+	hydrateEmail();
 
 	gsap.registerPlugin(ScrollTrigger);
 
