@@ -230,6 +230,15 @@ const lastUpdated = "23 de marzo de 2026";
 		body > :first-child {
 			flex: 1;
 		}
+
+		#aviso-back,
+		#aviso-eyebrow,
+		#aviso-title,
+		#aviso-date,
+		section > p:first-child,
+		section > h2 {
+			visibility: hidden;
+		}
 	</style>
 
 	<script>
@@ -240,19 +249,29 @@ const lastUpdated = "23 de marzo de 2026";
 
 		gsap.registerPlugin(ScrollTrigger);
 
-		const base = { scale: 0, opacity: 0, duration: 0.4, ease: "back.out" };
+		gsap.set("#aviso-back",    { y: -8 });
+		gsap.set("#aviso-eyebrow", { y: 8 });
+		gsap.set("#aviso-title",   { y: 18 });
+		gsap.set("#aviso-date",    { y: 8 });
 
-		gsap.from("#aviso-back",    base);
-		gsap.from("#aviso-eyebrow", { ...base, delay: 0.2 });
-		gsap.from("#aviso-title",   { ...base, y: 20, delay: 0.4 });
-		gsap.from("#aviso-date",    { ...base, delay: 0.6 });
+		gsap.to("#aviso-back",    { autoAlpha: 1, y: 0, duration: 0.55, ease: "power2.out" });
+		gsap.to("#aviso-eyebrow", { autoAlpha: 1, y: 0, duration: 0.55, ease: "power2.out", delay: 0.15 });
+		gsap.to("#aviso-title",   { autoAlpha: 1, y: 0, duration: 0.6,  ease: "power2.out", delay: 0.25 });
+		gsap.to("#aviso-date",    { autoAlpha: 1, y: 0, duration: 0.55, ease: "power2.out", delay: 0.4  });
 
 		document.querySelectorAll("section").forEach(section => {
 			const eyebrow = section.querySelector("p");
-			const title = section.querySelector("h2");
-			const trigger = { trigger: section, start: "top 80%" };
-			if (eyebrow) gsap.from(eyebrow, { ...base, scrollTrigger: trigger });
-			if (title)   gsap.from(title,   { ...base, y: 20, delay: 0.15, scrollTrigger: trigger });
+			const title   = section.querySelector("h2");
+			const trigger = { trigger: section, start: "top 85%" };
+
+			if (eyebrow) {
+				gsap.set(eyebrow, { y: 8 });
+				gsap.to(eyebrow, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power2.out", scrollTrigger: trigger });
+			}
+			if (title) {
+				gsap.set(title, { y: 14 });
+				gsap.to(title, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power2.out", delay: 0.15, scrollTrigger: trigger });
+			}
 		});
 	</script>
 </Layout>
