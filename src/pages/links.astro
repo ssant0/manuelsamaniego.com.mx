@@ -128,7 +128,7 @@ import {socialLinks} from "../data/socialLinks";
 					</div>
 					<div class="flex-1 min-w-0">
 						<p class="font-semibold text-sm leading-tight text-gray-800">GitHub</p>
-						<p class="text-gray-400 text-xs">github.com/ssant0</p>
+						<p class="text-gray-400 text-xs">{socialLinks.github.replace("https://", "")}</p>
 					</div>
 					<svg
 						class="shrink-0 text-[#2d5d54] opacity-50 group-hover:translate-x-1 group-hover:opacity-100 transition-all duration-300"
@@ -153,7 +153,7 @@ import {socialLinks} from "../data/socialLinks";
 					</div>
 					<div class="flex-1 min-w-0">
 						<p class="font-semibold text-sm leading-tight text-gray-800">Instagram</p>
-						<p class="text-gray-400 text-xs">@ssamanieg0_</p>
+						<p class="text-gray-400 text-xs">@{socialLinks.instagram.split("/").filter(Boolean).pop()}</p>
 					</div>
 					<svg
 						class="shrink-0 text-[#2d5d54] opacity-50 group-hover:translate-x-1 group-hover:opacity-100 transition-all duration-300"
