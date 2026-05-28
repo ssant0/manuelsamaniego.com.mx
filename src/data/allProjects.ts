@@ -93,9 +93,9 @@ export const allProjects: Project[] = [
 	{
 		title: "klyn.com.mx",
 		longDescription:
-			"Sitio web completo para Klyn, empresa proveedora de suministros de limpieza, oficina y papelería. Diseñé y desarrollé el sitio de principio a fin en colaboración directa con los dueños, configuré servidor VPS Ubuntu con actualizaciones de seguridad automáticas y HTTPS mediante Certbot auto-renovable, y desplegué en Cloudflare para máximo rendimiento global. Integré analítica avanzada con Google Analytics 4, Facebook Pixel y Google Tag Manager para seguimiento preciso de conversiones y campañas.",
+			"Sitio web completo para Klyn, empresa proveedora de suministros de limpieza, oficina y papelería. Diseñé y desarrollé el sitio de principio a fin en colaboración directa con los dueños. Desplegué en Cloudflare Pages con HTTPS automático, headers de seguridad personalizados y CDN global para máximo rendimiento. Integré analítica avanzada con Google Analytics 4, Facebook Pixel y Google Tag Manager para seguimiento preciso de conversiones y campañas.",
 		shortDescription:
-			"Sitio corporativo para proveedor de suministros de limpieza y oficina desarrollado con Astro + Bootstrap 5, infraestructura VPS Ubuntu con HTTPS automático, y analytics avanzado con GA4, Facebook Pixel y GTM.",
+			"Sitio corporativo para proveedor de suministros de limpieza y oficina desarrollado con Astro + Bootstrap 5, desplegado en Cloudflare Pages con HTTPS automático, y analytics avanzado con GA4, Facebook Pixel y GTM.",
 		image: klyn,
 		liveLink: "https://klyn.com.mx/",
 		technologies: ["Astro", "Bootstrap 5", "CSS", "Google Analytics", "Facebook Pixel", "GTM", "Cloudflare"],
@@ -107,11 +107,6 @@ export const allProjects: Project[] = [
 			"Facebook Pixel",
 			"GTM",
 			"Cloudflare",
-			"VPS",
-			"Ubuntu",
-			"Certbot",
-			"SSL",
-			"Server Administration",
 			"Proveedor",
 			"Suministros",
 			"Performance",
@@ -122,12 +117,12 @@ export const allProjects: Project[] = [
 	{
 		title: "erp.klyn.com.mx",
 		longDescription:
-			"Despliegue e implementación de ERP Odoo 19 Community para Klyn en servidor VPS Ubuntu. Instalé mediante paquete .deb oficial, configuré PostgreSQL y ajusté los módulos de Ventas, Inventario, Facturación y Contactos a los procesos del negocio. Integré correo corporativo con configuración SMTP/IMAP y plantillas de mail personalizadas para comunicaciones profesionales. Servidor con actualizaciones de seguridad automáticas y HTTPS mediante Certbot auto-renovable.",
+			"Despliegue e implementación de ERP Odoo 19 Community para Klyn en servidor VPS Ubuntu en DigitalOcean. Instalé mediante paquete .deb oficial, configuré PostgreSQL y ajusté los módulos de Ventas, Inventario, Facturación y Contactos a los procesos del negocio. Integré correo corporativo con configuración SMTP/IMAP y plantillas de mail personalizadas para comunicaciones profesionales. Servidor con actualizaciones de seguridad automáticas y HTTPS mediante Certbot auto-renovable.",
 		shortDescription:
-			"ERP Odoo 19 Community en VPS Ubuntu con módulos de Ventas, Inventario, Facturación y Contactos, integración SMTP/IMAP y SSL automático.",
+			"ERP Odoo 19 Community en VPS Ubuntu en DigitalOcean con módulos de Ventas, Inventario, Facturación y Contactos, integración SMTP/IMAP y SSL automático.",
 		image: klynErp,
 		liveLink: "https://erp.klyn.com.mx/",
-		technologies: ["Odoo 19", "PostgreSQL", "Ubuntu", "Let's Encrypt", "SSH"],
+		technologies: ["Odoo 19", "PostgreSQL", "Ubuntu", "DigitalOcean", "Let's Encrypt", "SSH"],
 		keywords: [
 			"Odoo",
 			"ERP",
@@ -141,6 +136,7 @@ export const allProjects: Project[] = [
 			"SMTP",
 			"IMAP",
 			"DevOps",
+			"DigitalOcean",
 			"Ventas",
 			"Inventario",
 			"Facturación",
