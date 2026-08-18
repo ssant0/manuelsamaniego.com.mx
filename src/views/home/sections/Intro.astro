@@ -61,7 +61,8 @@ import {socialLinks} from "../../../data/socialLinks";
 		</a>
 
 		<a
-			href={`mailto:${socialLinks.email}`}
+			href=""
+			data-email-href
 			target="_blank"
 			aria-label="Email"
 			class="transition-all duration-300 w-[44px] h-[44px] max-[800px]:w-[38px] max-[800px]:h-[38px] flex items-center justify-center border-solid rounded-xl border-[#2d5d54] border-2 p-2 hover:bg-[#2d5d54] hover:fill-white max-[382px]:w-[34px] max-[382px]:h-[34px]"
@@ -105,7 +106,8 @@ import {socialLinks} from "../../../data/socialLinks";
 		class="flex gap-3 pt-8 max-[550px]:flex-col max-[550px]:items-center"
 	>
 		<a
-			href={`mailto:${socialLinks.email}`}
+			href=""
+			data-email-href
 			class="cta-primary rounded-xl bg-[#2d5d54] hover:bg-[#2c7c6e] transition-all text-white px-7 py-3 flex gap-2 items-center max-[660px]:px-5"
 		>
 			<span class="text-lg max-[660px]:text-base max-[382px]:text-sm">Contáctame</span>
@@ -163,6 +165,8 @@ import {socialLinks} from "../../../data/socialLinks";
 
 <script>
 	import gsap from "gsap";
+	import { hydrateEmail } from "../../../utils/email";
+	hydrateEmail();
 
 	const baseTo = {autoAlpha: 1, scale: 1, duration: 0.4, ease: "back.out"};
 
