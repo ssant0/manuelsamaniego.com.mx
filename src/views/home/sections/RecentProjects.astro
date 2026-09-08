@@ -42,6 +42,7 @@ import {allProjects} from "../../../data/allProjects";
 	#recent-projects-eyebrow,
 	#recent-projects-title {
 		visibility: hidden;
+		will-change: transform;
 	}
 </style>
 
@@ -64,12 +65,14 @@ import {allProjects} from "../../../data/allProjects";
 
 	ScrollTrigger.batch(".card-project", {
 		start: "top 95%",
-		onEnter: batch => gsap.to(batch, {
+		onEnter: cards => gsap.to(cards, {
 			autoAlpha: 1,
 			scale: 1,
 			duration: 0.5,
 			ease: "back.out",
 			stagger: 0.1,
+			clearProps: "transform",
+			onComplete: () => cards.forEach(card => card.classList.add("card-ready")),
 		}),
 	});
 </script>

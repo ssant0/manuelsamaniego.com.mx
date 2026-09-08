@@ -46,6 +46,28 @@ const {
 <body class="rubik">
 <slot/>
 <Footer/>
+<script>
+	import gsap from "gsap";
+	import {ScrollTrigger} from "gsap/ScrollTrigger";
+
+	// Desactiva la restauración de scroll del navegador al volver atrás
+	history.scrollRestoration = "manual";
+
+	// prefers-reduced-motion: fast-forward todas las animaciones GSAP (y sus
+	// delays) a su estado final. Como este script corre en la misma fase que
+	// los demás módulos (antes del primer rAF), el usuario no percibe
+	// movimiento y el contenido oculto por FOUC queda visible al instante.
+	if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+		gsap.globalTimeline.timeScale(500);
+	}
+
+	// ScrollTrigger.refresh() después de que las fuentes carguen: Google Fonts
+	// puede desplazar el layout y desfasar las posiciones de los triggers.
+	if (document.fonts?.ready) {
+		document.fonts.ready.then(() => ScrollTrigger.refresh());
+	}
+	window.addEventListener("load", () => ScrollTrigger.refresh());
+</script>
 </body>
 </html>
 

@@ -113,6 +113,7 @@ import { socialLinks } from "../../data/socialLinks";
 	#contact-title,
 	#contact-body {
 		visibility: hidden;
+		will-change: transform;
 	}
 
 	.contact-card {
@@ -125,13 +126,23 @@ import { socialLinks } from "../../data/socialLinks";
 		border: 1.5px solid #e5e7eb;
 		color: #2d5d54;
 		text-decoration: none;
-		transition: all 0.25s ease;
+		will-change: transform;
+		transition: border-color 0.25s ease, box-shadow 0.25s ease;
 		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 	}
 
 	.contact-card:hover {
 		border-color: #2d5d54;
 		box-shadow: 0 6px 20px rgba(45, 93, 84, 0.15);
+	}
+
+	/* El transform de hover se habilita solo tras la animación de entrada
+	 (clase .card-ready añadida por GSAP) para no pelear con el tween. */
+	.contact-card.card-ready {
+		transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+	}
+
+	.contact-card.card-ready:hover {
 		transform: translateY(-2px);
 	}
 
@@ -221,12 +232,14 @@ import { socialLinks } from "../../data/socialLinks";
 
 	ScrollTrigger.batch(".contact-card", {
 		start: "top 95%",
-		onEnter: batch => gsap.to(batch, {
+		onEnter: cards => gsap.to(cards, {
 			autoAlpha: 1,
 			scale: 1,
 			duration: 0.4,
 			ease: "back.out",
 			stagger: 0.1,
+			clearProps: "transform",
+			onComplete: () => cards.forEach(card => card.classList.add("card-ready")),
 		}),
 	});
 </script>

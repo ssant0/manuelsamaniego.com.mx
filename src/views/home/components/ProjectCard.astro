@@ -65,14 +65,22 @@ const id = "card-" + cleanTitle;
 
 <style>
 	.card-project {
-		position: relative;
-		bottom: 0;
-		transition: bottom 0.3s ease, box-shadow 0.3s ease;
+		will-change: transform;
+		transition: box-shadow 0.3s ease;
 	}
 
 	.card-project:hover {
-		bottom: 4px;
 		box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+	}
+
+	/* El transform de hover se habilita solo tras la animación de entrada
+	 (clase .card-ready añadida por GSAP) para no pelear con el tween. */
+	.card-project.card-ready {
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+	}
+
+	.card-project.card-ready:hover {
+		transform: translateY(-4px);
 	}
 
 	.card-img {

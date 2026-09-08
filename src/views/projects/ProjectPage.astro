@@ -82,7 +82,7 @@ const {title, longDescription, image, liveLink, repoLink, technologies} =
 			href={liveLink}
 			target="_blank"
 			rel="noopener noreferrer"
-			class="cta-primary rounded-xl bg-[#2d5d54] hover:bg-[#2c7c6e] transition-all text-white px-7 py-3 flex gap-2 items-center w-fit"
+			class="cta-primary rounded-xl bg-[#2d5d54] hover:bg-[#2c7c6e] transition text-white px-7 py-3 flex gap-2 items-center w-fit"
 		>
 			<span class="text-base">Visitar proyecto</span>
 			<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
@@ -98,7 +98,7 @@ const {title, longDescription, image, liveLink, repoLink, technologies} =
 				href={repoLink}
 				target="_blank"
 				rel="noopener noreferrer"
-				class="cta-secondary rounded-xl border-2 border-[#2d5d54] text-[#2d5d54] hover:bg-[#2d5d54] hover:text-white transition-all px-7 py-3 flex gap-2 items-center w-fit"
+				class="cta-secondary rounded-xl border-2 border-[#2d5d54] text-[#2d5d54] hover:bg-[#2d5d54] hover:text-white transition px-7 py-3 flex gap-2 items-center w-fit"
 			>
 				<span class="text-base">Ver repositorio</span>
 				<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
@@ -165,6 +165,7 @@ const {title, longDescription, image, liveLink, repoLink, technologies} =
 	#project-description p,
 	#project-description h2 {
 		visibility: hidden;
+		will-change: transform;
 	}
 
 	.back-link {

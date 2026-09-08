@@ -24,7 +24,7 @@ import {technologies} from "../../../data/technologies";
 			{
 				technologies.map((tech) => (
 					<div
-						class="tech-card group flex flex-col items-center justify-center gap-3 p-4 w-36 h-36 sm:w-40 sm:h-40 cursor-default bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md hover:border-[#2d5d54]/20 transition-all duration-300">
+						class="tech-card group flex flex-col items-center justify-center gap-3 p-4 w-36 h-36 sm:w-40 sm:h-40 cursor-default bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md hover:border-[#2d5d54]/20 transition-[box-shadow,border-color] duration-300">
 						<div class="transition-transform duration-300 group-hover:scale-110">
 							<div set:html={tech.icon}/>
 						</div>
@@ -43,6 +43,11 @@ import {technologies} from "../../../data/technologies";
 	#technologies-eyebrow,
 	#technologies-title {
 		visibility: hidden;
+		will-change: transform;
+	}
+
+	.tech-card {
+		will-change: transform;
 	}
 </style>
 

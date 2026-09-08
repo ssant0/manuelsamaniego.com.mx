@@ -14,7 +14,7 @@
     py-3 px-5
     rounded-2xl shadow-md flex items-center justify-center text-xl gap-8
     max-[660px]:text-lg max-[660px]:gap-3 max-[382px]:text-base
-    transition-all duration-300
+    transition-colors duration-300
     max-[660px]:w-full max-[660px]:justify-center max-[660px]:rounded-none max-[480px]:text-base"
 	>
 		<button
@@ -120,6 +120,10 @@
 	#links-container,
 	.lb {
 		visibility: hidden;
+	}
+
+	.lb {
+		will-change: transform;
 	}
 
 	.lb.active {
